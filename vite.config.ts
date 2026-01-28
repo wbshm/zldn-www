@@ -3,16 +3,8 @@ import path from 'path'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 
-// Auto-detect GitHub Pages base path. Allows override via BASE_PATH.
-const repoName = process.env.GITHUB_REPOSITORY?.split('/').pop();
-const isUserSite = repoName?.endsWith('github.io');
-const githubBase = process.env.BASE_PATH
-  ? process.env.BASE_PATH
-  : isUserSite
-    ? '/'
-    : repoName
-      ? `/${repoName}/`
-      : '/';
+// Base path for assets. Use BASE_PATH to override; default root '/' (works for custom domains).
+const githubBase = process.env.BASE_PATH || '/';
 
 export default defineConfig({
   base: githubBase,
